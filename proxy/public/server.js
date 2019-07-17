@@ -1,18 +1,23 @@
 const express = require('express');
-const request = require('request');
 const path = require('path');
 const favicon = require('serve-favicon');
+const axios = require('axios');
 const app = express();
 const port = 3000;
 
-app.use(favicon(path.join(__dirname, './lib', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'lib', 'favicon.ico')));
 
-app.use('/:id', express.static(path.join(__dirname, 'lib')));
+app.use(express.static(path.join(__dirname, './lib')));
 
-app.get('/api/:id', (req, res) => {
+app.use('/:id', express.static(path.join(__dirname, './lib')));
+
+app.get('/descriptions/:id', (req, res) => {
   const id = req.params.id
-  const url = `http://localhost:3003/api/${id}`;
-  req.pipe(request(url)).pipe(res);
+  const url = `http://localhost:3003/descriptions/${id}`;
+  console.log('got here')
+  axios.get(url)
+    .then(data => res.send(data.data))
+    .catch(error => console.log('ERROR', error))
 });
 
 app.listen(
