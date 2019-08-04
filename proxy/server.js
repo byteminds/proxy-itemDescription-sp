@@ -16,8 +16,16 @@ app.use(express.static('public'));
 app.use('/:id', express.static(path.join(__dirname, 'public')));
 
 app.get('/descriptions/:id', (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   const url = `http://localhost:3003/descriptions/${id}`;
+  axios.get(url)
+    .then(data => res.send(data.data))
+    .catch(error => console.log('ERROR', error))
+});
+
+app.get('/reviews/:id', (req, res) => {
+  const id = req.params.id;
+  const url = `http://localhost:3001/reviews/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))

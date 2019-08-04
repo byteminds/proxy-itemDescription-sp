@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  description:
+    build: services/service-itemDescription-sp/
+    depends_on:
+      - 'database'
+    ports:
+     - '3003:3003'
+
+  # checkout:
+  #   build: services/service-pricing-checkout-kt/
+  #   depends_on:
+  #     - 'database'
+  #   ports:
+  #     - '3004:3004'
+
+  # reviews:
+  #   build: services/components-product-review-pt/
+  #   depends_on:
+  #     - 'database'
+  #   ports:
+  #     - '3001:3001'
+
+  database:
+    image: mongo:latest
