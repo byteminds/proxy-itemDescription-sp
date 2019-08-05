@@ -23,17 +23,17 @@ app.get('/descriptions/:id', (req, res) => {
     .catch(error => console.log('ERROR', error))
 });
 
-app.get('/checkout/:id', (req, res) => {
+app.get('/api/:id', (req, res) => {
   const id = req.params.id;
-  const url = `http://ec2-3-17-206-111.us-east-2.compute.amazonaws.com/checkout/${id}`;
+  const url = `http://ec2-3-17-206-111.us-east-2.compute.amazonaws.com/pricingAPI/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))
 });
 
-app.get('/reviews/:id', (req, res) => {
+app.get('/api/:id', (req, res) => {
   const id = req.params.id;
-  const url = `http://ec2-34-201-59-177.compute-1.amazonaws.com/reviews/reviews/${id}`;
+  const url = `http://ec2-34-201-59-177.compute-1.amazonaws.com/api/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))
