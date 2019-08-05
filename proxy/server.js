@@ -17,7 +17,15 @@ app.use('/:id', express.static(path.join(__dirname, 'public')));
 
 app.get('/descriptions/:id', (req, res) => {
   const id = req.params.id;
-  const url = `http://localhost:3003/descriptions/${id}`;
+  const url = `http://ec2-54-67-53-174.us-west-1.compute.amazonaws.com/descriptions/${id}`;
+  axios.get(url)
+    .then(data => res.send(data.data))
+    .catch(error => console.log('ERROR', error))
+});
+
+app.get('/checkout/:id', (req, res) => {
+  const id = req.params.id;
+  const url = `http://ec2-3-17-206-111.us-east-2.compute.amazonaws.com/checkout/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))
@@ -25,7 +33,7 @@ app.get('/descriptions/:id', (req, res) => {
 
 app.get('/reviews/:id', (req, res) => {
   const id = req.params.id;
-  const url = `http://localhost:3001/reviews/${id}`;
+  const url = `http://ec2-34-201-59-177.compute-1.amazonaws.com/reviews/reviews/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))
