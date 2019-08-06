@@ -31,9 +31,9 @@ app.get('/api/:id', (req, res) => {
     .catch(error => console.log('ERROR', error))
 });
 
-app.get('/api/:productId', (req, res) => {
+app.get('/reviews/api/:productId', (req, res) => {
   const id = req.params.id;
-  const url = `http://ec2-34-201-59-177.compute-1.amazonaws.com/api/${id}`;
+  const url = `http://ec2-34-201-59-177.compute-1.amazonaws.com/reviews/api/${id}`;
   axios.get(url)
     .then(data => res.send(data.data))
     .catch(error => console.log('ERROR', error))
